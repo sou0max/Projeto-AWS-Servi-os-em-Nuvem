@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projeto 01 - Docker na AWS</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 16px; }
+    li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <h1>Projeto 01 - Deploy com Docker</h1>
+  <p id="msg">Carregando...</p>
+  <ul id="lista"></ul>
+  <script>
+    fetch("/api/dados")
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById("msg").textContent = d.mensagem || d.erro;
+        (d.itens || []).forEach(i => {
+          const li = document.createElement("li");
+          li.textContent = i;
+          document.getElementById("lista").appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
